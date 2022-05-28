@@ -1,0 +1,73 @@
+.main-bg {
+  height: 300px;
+  background-image: url("https://codingapple.com/wp-content/uploads/2022/04/bg.png");
+  background-size: cover;
+  background-position: center;
+  
+}
+
+.App {
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.nav-body {
+  height: 100%;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  width: calc(100% - 2rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--text1);
+  font-size: 1.3125rem;
+  text-decoration: none;
+  font-family: "Fira Mono", monospace;
+}
+
+.menu {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+}

@@ -1,10 +1,11 @@
 
-import data from './data.js'//서버에서 데이터받아오기 지금은 파일에서 import했습니다.
+import data from '../data.js'//서버에서 데이터받아오기 지금은 파일에서 import했습니다.
 import React, { useState } from "react";
+import axios from 'axios';
 
 
 function Shoes(){
-    let [shoes] = useState(data);
+    let [shoes, setShoes] = useState(data);
     return (
        //shoes 갯수만큼 돌려주세요~
       //파라미터는 두개까지 작명가능
@@ -19,13 +20,25 @@ function Shoes(){
       //i ={i}로 props 받아왔음
     shoes.map((a, i) =>{
       return (
-        <Card shoes={shoes[i]} i={i}></Card>
+        <Card shoes={shoes[i]} i={i} key={i}></Card>
       )
     })}
 
          </div>
      
     </div> 
+    <button onClick={()=>{
+      axios.get('https://codingapple1.github.io/shop/data2.json')
+      .then((result)=>{
+       console.log(result.data) 
+       console.log(shoes)
+       //가져온 데이터를 state에 집어넣었음
+       let copy = [...shoes, ...result.data];//구조분해할당으로 합치기
+       setShoes(copy)
+         })
+      .catch((error)=>{
+        console.log(error)})
+    }}>버튼</button>
     </> 
     )}
  

@@ -24,12 +24,13 @@ function App() {
           {/* <Nav.Link onClick={()=>{navigate('-1')}}>NFT</Nav.Link>이렇게하면 뒤로가기됌! */}
             <Nav.Link onClick={()=>{navigate('/')}}>NFT</Nav.Link>
             <Nav.Link onClick={()=>{navigate('/detail')}}>DFI</Nav.Link>
-            <Nav.Link href="#pricing">DAO</Nav.Link>
+            <Nav.Link onClick={()=>{navigate('/events')}}>DAO</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
 
       <Routes>
+      <Route path="*" element={<div>없는페이지에요</div>}/>
       <Route path="/" element={<Shoes/>}/>
       <Route path="/detail/:id" element={<Detail shoes={shoes}/>}/>
 
@@ -42,7 +43,7 @@ function App() {
          <Route path="two" element={<p>생일기념 쿠폰받기</p>}/>
         </Route>
       
-        <Route path="*" element={<div>없는페이지에요</div>}/>
+       
       </Routes>
     </div>
   );

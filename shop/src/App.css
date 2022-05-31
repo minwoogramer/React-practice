@@ -1,3 +1,17 @@
+
+.start{
+
+  transform: scale(0);
+  
+}
+.end{
+   opacity: 1; 
+  transform: scale(1);
+  transition: opacity, scale 0.5s;
+}
+
+
+
 .main-bg {
   height: 300px;
   background-image: url("https://codingapple.com/wp-content/uploads/2022/04/bg.png");

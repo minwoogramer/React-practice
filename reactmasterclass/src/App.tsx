@@ -1,39 +1,39 @@
 import styled,{keyframes} from "styled-components";
+import Circle from "./Circle";
+// const Title = styled.h1`
+// color: ${(props)=> props.theme.textColor};`
 
-const Title = styled.h1`
-color: ${(props)=> props.theme.textColor};`
 
+// const Wrapper = styled.div`
+// display: flex;`
 
-const Wrapper = styled.div`
-display: flex;`
+// const rotationAnimation = keyframes`
+// /* from */
+// 0%{
+//   transform:rotate(0deg);
+//   border-radius:0px;
+// }
+// /* to */
+// 50%{
+//   border-radius:100px;
+// }
+// 100%{
+//   transform: rotate(360deg);
+//   border-radius:0px;
+// }`
+// const Emoji = styled.span`
+// font-size: 36px;`
 
-const rotationAnimation = keyframes`
-/* from */
-0%{
-  transform:rotate(0deg);
-  border-radius:0px;
-}
-/* to */
-50%{
-  border-radius:100px;
-}
-100%{
-  transform: rotate(360deg);
-  border-radius:0px;
-}`
-const Emoji = styled.span`
-font-size: 36px;`
-
-const Box = styled.div`
-width: 200px;
-height: 200px;
-background-color: tomato;
-display:flex;
-justify-content: center;
-align-items: center;
-background-color: ${(props)=> props.theme.backgroundColor};
-/* animation:${rotationAnimation} 1s linear infinite;
-${Emoji} */
+// const Box = styled.div`
+// width: 200px;
+// height: 200px;
+// background-color: tomato;
+// display:flex;
+// justify-content: center;
+// align-items: center;
+// background-color: ${(props)=> props.theme.backgroundColor};
+// /* animation:${rotationAnimation} 1s linear infinite;
+// ${Emoji} */
 /* 이렇게해주면 tag종류에 상관없이 css가 작동함
 다만 Box라는 컴포넌트안에있어야만 작동함
 span{
@@ -82,21 +82,25 @@ span{
 
 function App() {
   return (
-    <Wrapper>
-    <Box/>
-    <Title>Hello</Title>
-    {//이모지는 스타일컴포넌트안에 있지않지만 꼭 모든 컴포넌트에 스타일컴포넌트처리를 안해줘도됌 
-    /* // <Father >
-    //   <Input/>
-    //   {/* <Btn as= "a" href="/">
-    //     Log in
-    //     </Btn>
+    <div>
+    <Circle borderColor="yellow" bgColor="teal"/>
+    <Circle bgColor="tomato"/>
+    </div>
+    // <Wrapper>
+    // <Box/>
+    // <Title>Hello</Title>
+    // {//이모지는 스타일컴포넌트안에 있지않지만 꼭 모든 컴포넌트에 스타일컴포넌트처리를 안해줘도됌 
+    // /* // <Father >
+    // //   <Input/>
+    // //   {/* <Btn as= "a" href="/">
+    // //     Log in
+    // //     </Btn>
         
-    //   <Box bgcolor="teal"/>
-    //   <Text>Hello</Text>
-    //   <Circle bgcolor="tomato"/> */}
-    {/* // </Father> */}
-    </Wrapper>
+    // //   <Box bgcolor="teal"/>
+    // //   <Text>Hello</Text>
+    // //   <Circle bgcolor="tomato"/> */}
+    // {/* // </Father> */}
+    // </Wrapper>
   );
 }
 

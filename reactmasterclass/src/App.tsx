@@ -7,7 +7,7 @@ import Circle from "./Circle";
 // const Wrapper = styled.div`
 // display: flex;`
 
-// const rotationAnimation = keyframes`
+// const rotationAnimation = keyframes
 // /* from */
 // 0%{
 //   transform:rotate(0deg);
@@ -38,14 +38,14 @@ import Circle from "./Circle";
 다만 Box라는 컴포넌트안에있어야만 작동함
 span{
   font-size:36px;
-  &:hover{
+  &:hover
     font-size:48px;
   }
   &:active{
     opacity: 0;
   }
 } */
-`
+
 //스타일 컴포넌트 사용법과 확장하는법
 // const Father = styled.div`
 //   display: flex;
@@ -84,7 +84,7 @@ function App() {
   return (
     <div>
     <Circle borderColor="yellow" bgColor="teal"/>
-    <Circle bgColor="tomato"/>
+    <Circle text="im here" bgColor="tomato"/>
     </div>
     // <Wrapper>
     // <Box/>

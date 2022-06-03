@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {useState} from "react"
 
 interface ContainnerProps{
     bgColor:string;
@@ -23,17 +24,22 @@ interface CircleProps{
 //components의 props에 type을 주는법
 //만약 실수하거나 반드시보내야하는 props를 보내지않는다면 불평할꺼임
 function Circle({bgColor, borderColor, text ="default text"}:CircleProps){
-return <Containner bgColor={bgColor} borderColor={borderColor ?? bgColor}>{text}</Containner>;//optional 체이닝할때 쓰는거
+const[counter, setCounter] = useState<number| string | boolean>(0);
+setCounter(2);
+setCounter("hello");
+setCounter(true);
+return <Containner bgColor={bgColor}
+ borderColor={borderColor ?? bgColor}>{text}</Containner>;//optional 체이닝할때 쓰는거
 //undefined일수도 sting일수도있다는걸암
 }
 
 export default Circle;
 
-interface PlayerShape{
-    name:string;
-    age:number;
-    hello:number;
-}
+// interface PlayerShape{
+//     name:string;
+//     age:number;
+//     hello:number;
+// }
 
-const sayHello = (playerObj:PlayerShape)=> `Hello ${playerObj.name} you are ${playerObj.age} years old.`
-sayHello({name:"hi", age:12, hello:1})
+// const sayHello = (playerObj:PlayerShape)=> `Hello ${playerObj.name} you are ${playerObj.age} years old.`
+// sayHello({name:"hi", age:12, hello:1})

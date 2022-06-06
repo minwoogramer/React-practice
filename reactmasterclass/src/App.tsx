@@ -1,52 +1,36 @@
 
+import { createGlobalStyle, } from "styled-components";
+import  styled from "styled-components"
 import Router from"./Router"
 
+const GlobalStyle = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@1,300&display=swap');
+  body{
+    color:red;
+  }
+  table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: ${props =>props.theme.bgColor};
+    color:${(props)=> props.theme.textColor}
+  }
+  a{
+    text-decoration: none;
+    color:inherit;//부모로부터 색상을가져와서 링크를 눌러도 색깔이 바뀌지않음 개꿀;
+  }
+  *{
+    box-sizing:border-box;
+  }
+`
 
 function App() {
-   return <Router/>
+   return <>
+   <GlobalStyle/>
+   <Router/>
 
-  // const [ value, setValue] = useState("")
-  // const onChange = (event: React.FormEvent<HTMLInputElement>)=>{
-  //   const{
-  //     currentTarget:{ value },
-  //   } = event;
-  //   setValue(value);
-  //   console.log(event.currentTarget.value);
-  // };
-  // const onSubmit = (event: React.FormEvent<HTMLFormElement>) =>{
-  //   event.preventDefault();
-  // console.log("hello", value);
-  // };
-  
-  // return (
-  //   <div>
-  //     <form onSubmit={onSubmit}>
-  //     <input
-  //      value={value}
-  //      onChange={onChange}
-  //      type="text"
-  //      placeholder="username"/>
-  //     <button>Log in</button>
-  //     </form>
-  //   {/* <Circle borderColor="yellow" bgColor="teal"/>
-  //   <Circle text="im here" bgColor="tomato"/> */}
-  //   </div>
-    // <Wrapper>
-    // <Box/>
-    // <Title>Hello</Title>
-    // {//이모지는 스타일컴포넌트안에 있지않지만 꼭 모든 컴포넌트에 스타일컴포넌트처리를 안해줘도됌 
-    // /* // <Father >
-    // //   <Input/>
-    // //   {/* <Btn as= "a" href="/">
-    // //     Log in
-    // //     </Btn>
-        
-    // //   <Box bgcolor="teal"/>
-    // //   <Text>Hello</Text>
-    // //   <Circle bgcolor="tomato"/> */}
-    // {/* // </Father> */}
-    // </Wrapper>
-  
+   
+
+   </>
 }
 
 export default App;

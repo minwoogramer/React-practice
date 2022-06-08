@@ -3,6 +3,7 @@ import  styled  from 'styled-components';
 
 import  {useState } from 'react';
 import { useLocation } from "react-router-dom";
+import { useEffect } from 'react';
 
 const Container = styled.div`
     padding:0px 20px;
@@ -30,21 +31,36 @@ interface RouteParams {
    }
    
 interface LocationParams {
-    state: {
-    name: string;
-    };
+    state: string;
    }
+
 function Coin(){
     const { coinId } = useParams<keyof RouteParams>() as RouteParams;
     const [loading, setLoading] = useState(true)
     const { state } = useLocation() as LocationParams;;//이런식으로 state로 받아오면 일일이 api에서 정보를 받아오지않아 빨라짐
-    return<Container>
-    <Header>
-        <Title>{state?.name || "Loading.."}</Title>
-    </Header>
-   {
-   loading ?(
-      <Loader>Loading...</Loader>
-   ) :null}</Container>;
+    const [ info, setInfo] = useState({});
+    const [priceInfo, setPriceInfo] = useState({})
+    useEffect(()=>{
+        (async() =>{
+        const infoData = await(
+            await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
+        ).json();//캡슐라이징
+        const priceData = await(
+            await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
+        ).json();
+        setInfo(infoData);
+        setPriceInfo(priceData);
+      
+    
+    })();
+},[])
+  console.log(state)
+    return(
+    <Container>
+         <Header>
+         <Title>{state || "Loading..."}</Title>
+         </Header>
+         {loading ?<Loader>Loading...</Loader>:  null }
+  </Container>);
 }
 export default Coin;

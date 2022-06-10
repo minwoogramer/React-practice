@@ -1,19 +1,25 @@
 import React from 'react';
-import {createRoot} from 'react-dom/client';
-import './index.css';
-import { ThemeProvider } from 'styled-components';
-import App from './App';
-import { theme } from './theme';
+import ReactDOM from 'react-dom/client';
+import reportWebVitals from './reportWebVitals';
+import{ QueryClient, QueryClientProvider} from"react-query"
+import App from "./App";
+import { RecoilRoot } from "recoil";
+
+const queryClient = new QueryClient();
+const rootNode = document.getElementById('root');
 
 
-const rootElement = document.getElementById('root');
-const root = createRoot(rootElement as Element | DocumentFragment);
 
-root.render(
+if (!rootNode) throw new Error('Failed to find the root element');
+
+ReactDOM.createRoot(rootNode).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-    <App />
-    </ThemeProvider>
-  </React.StrictMode>
+     <RecoilRoot>
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+    </RecoilRoot>
+  </React.StrictMode>,
+ 
 );
-
+reportWebVitals();

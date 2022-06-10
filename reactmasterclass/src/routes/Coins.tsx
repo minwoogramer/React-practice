@@ -1,7 +1,12 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components" ;
 
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+import { useQuery } from "react-query";
+import { fetchCoins } from "../api";
+import { Helmet } from "react-helmet";
+import { useSetRecoilState } from "recoil";
+import { isDarkAtom } from "../atom";
 
 const Container = styled.div`
     padding:0px 20px;
@@ -21,7 +26,7 @@ const CoinsList =styled.ul`
 `
 const Coin = styled.li`
     background-color: white;
-    color:${props =>props.theme.bgColor};
+    color:${props =>props.theme.textColor};
     border-radius: 15px;
     margin-bottom: 10px;
     a{  
@@ -39,6 +44,7 @@ const Coin = styled.li`
 const Title = styled.h1`
  font-size:48px;
  color:${props => props.theme.accentColor};
+ font-weight: 600;
 `
 const Loader = styled.div`
     text-align:center;
@@ -50,6 +56,52 @@ const Img= styled.img`
     margin-right:10px;
 
 `
+const CheckBoxWrapper = styled.div`
+  margin: 0px 0px 0px 10px;
+  position: relative;
+  display: flex;
+`;
+const CheckBoxLabel = styled.label`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 42px;
+  height: 26px;
+  border-radius: 15px;
+  background: #bebebe;
+  cursor: pointer;
+  &::after {
+    content: "";
+    display: block;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    margin: 3px;
+    background: #ffffff;
+    box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
+  }
+`;
+const CheckBox = styled.input`
+  opacity: 0;
+  z-index: 1;
+  border-radius: 15px;
+  width: 42px;
+  height: 26px;
+  &:checked + ${CheckBoxLabel} {
+    background: ${(props) => props.theme.accentColor};
+    &::after {
+      content: "";
+      display: block;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      margin-left: 21px;
+      transition: 0.2s;
+      background-color: black;
+    }
+  }
+`;
 // const coins = [
 //     {
 //         id: "btc-bitcoin",
@@ -80,7 +132,7 @@ const Img= styled.img`
 //         },
 // ]
 //우리 코인이 어떻게생겼는지 Typescript에게 말해주는 방법
-interface CoinInterface {
+interface ICoin {
     id: string,
     name: string,
     symbol: string,
@@ -91,28 +143,43 @@ interface CoinInterface {
 }
 
 const Coins= ()=>{
-    //typescript에게 배열인거 알려주는 방법 안알려주면 불평함;
-    const [coins, setCoins] = useState<CoinInterface[]>([]);
-    const [loading, setLoading] = useState(true)
-    //중간에 끼어서 실행시키기!
-    useEffect(()=>{
-     //페이지가실행될때 바로 함수가 실행되게하는법
-      (async()=>{
-      const response = await fetch("https://api.coinpaprika.com/v1/coins")
-      const json = await response.json();
-      setCoins(json.slice(0,100));
-      setLoading(false);
-      })();
-    },[]);
+  const{ isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins)
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const changeTheme = () => {
+    setDarkAtom((cur) => !cur);
+  };
+    // //typescript에게 배열인거 알려주는 방법 안알려주면 불평함;
+    // const [coins, setCoins] = useState<CoinInterface[]>([]);
+    // const [loading, setLoading] = useState(true)
+    // //중간에 끼어서 실행시키기!
+    // useEffect(()=>{
+    //  //페이지가실행될때 바로 함수가 실행되게하는법
+    //   (async()=>{
+    //   const response = await fetch("https://api.coinpaprika.com/v1/coins")
+    //   const json = await response.json();
+    //   setCoins(json.slice(0,100));
+    //   setLoading(false);
+    //   })();
+    // },[]);
     return (<Container>
+         <Helmet>
+      <Title>
+      GreatCoin
+        </Title>
+      </Helmet>
+      
         <Header>
-            <Title>코인</Title>
+            <Title>GreatCoin</Title>
         </Header>
+        <CheckBoxWrapper>
+          <CheckBox id="checkbox" type="checkbox" onClick={changeTheme} />
+          <CheckBoxLabel htmlFor="checkbox" />
+        </CheckBoxWrapper>
        {
-       loading ?(
+       isLoading ?(
           <Loader>Loading...</Loader>
        ) :<CoinsList>
-            {coins.map((coin) =>(
+            {data?.slice(0,50).map((coin) =>(
             <Coin key={coin.id}>
                 <Link
                 to={`/${coin.id}`}

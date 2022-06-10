@@ -46,6 +46,7 @@ const Title = styled.h1`
  color:${props => props.theme.accentColor};
  font-weight: 600;
 `
+
 const Loader = styled.div`
     text-align:center;
     display: block;

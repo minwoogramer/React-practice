@@ -1,9 +1,9 @@
-import React from "react";
+
 import { useQuery } from "react-query";
 import { useOutletContext } from "react-router-dom";
 import { fetchCoinHistory } from "../api";
 import styled from "styled-components";
-import { stringify } from "querystring";
+
 import PriceItem from "../PriceItem";
 
 const Container = styled.div`

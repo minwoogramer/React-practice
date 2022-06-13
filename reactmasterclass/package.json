@@ -56,5 +56,16 @@
     "@types/uuid": "^8.3.4",
     "gh-pages": "^4.0.0"
   },
-  "homepage": "https://minwoogramer.github.io/reactmasterclass/index.tsx"
+  "homepage": "https://minwoogramer.github.io/reactmasterclass/index.tsx",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minwoogramer/React-practice.git#main"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minwoogramer/React-practice/issues"
+  }
 }

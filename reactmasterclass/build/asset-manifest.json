@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/reactmasterclass/index.tsx/static/js/main.ecf8397f.js",
+    "static/js/787.d2b30321.chunk.js": "/reactmasterclass/index.tsx/static/js/787.d2b30321.chunk.js",
+    "index.html": "/reactmasterclass/index.tsx/index.html",
+    "main.ecf8397f.js.map": "/reactmasterclass/index.tsx/static/js/main.ecf8397f.js.map",
+    "787.d2b30321.chunk.js.map": "/reactmasterclass/index.tsx/static/js/787.d2b30321.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.ecf8397f.js"
+  ]
+}
